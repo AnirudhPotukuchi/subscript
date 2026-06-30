@@ -1,0 +1,50 @@
+[
+  {
+    "uid": "admin-user-id",
+    "id": "admin-user-id",
+    "email": "admin@college.edu",
+    "password": "2e1bdf3032a87f38d8b1c27313b6dc17:84811315500195a13c8cbcb8c59c9942c648ee26c280f0876f3b0538f9d5a56bf05a2ef8786281f05f42675dd91c91a8eb850c9b6c1b7ccdbfa0370f0432eeb7",
+    "fullName": "Jane Doe",
+    "rollNumber": "CS2026001", 
+    "branch": "Computer Science",
+    "year": 3,
+    "section": "A",
+    "bio": "Seeded system administrator.",
+    "profilePicture": "https://api.dicebear.com/7.x/adventurer/svg?seed=Jane%20Doe",
+    "skills": [
+      "TypeScript",
+      "Vue 3",
+      "Node.js"
+    ],
+    "programmingLanguages": [
+      "JavaScript",
+      "TypeScript"
+    ],
+    "techStack": [
+      "Vite",
+      "Pinia",
+      "TailwindCSS"
+    ],
+    "projects": [],
+    "achievements": [],
+    "hackathons": [],
+    "leetcodeUrl": "",
+    "codeforcesUrl": "",
+    "githubUrl": "",
+    "linkedinUrl": "",
+    "resumeUrl": "",
+    "placementStatus": "unplaced",
+    "currentCompany": "",
+    "internships": [],
+    "followersCount": 0,
+    "followingCount": 0,
+    "followers": [],
+    "following": [],
+    "bookmarks": [],
+    "likedPosts": [],
+    "role": "admin",
+    "isVerified": true,
+    "createdAt": "2026-06-29T18:10:50.339Z",
+    "updatedAt": "2026-06-29T18:10:50.340Z"
+  }
+]
