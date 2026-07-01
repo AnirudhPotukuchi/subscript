@@ -80,7 +80,7 @@ const navigateToProfile = () => {
       <!-- Logo -->
       <div @click="router.push('/')" class="flex items-center gap-2 cursor-pointer select-none">
         <span class="text-lg font-bold text-github-accent">
-          subscript
+          SubscriptStack
         </span>
         <span class="text-[10px] px-1.5 py-0.2 bg-github-accent/10 text-github-accent rounded-[4px] font-semibold border border-github-accent/25">
           College exclusive

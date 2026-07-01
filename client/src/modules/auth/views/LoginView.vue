@@ -40,7 +40,7 @@ const handleLogin = async () => {
       <!-- Card Header -->
       <div class="text-center">
         <h1 class="text-2xl font-bold text-github-accent mb-1">
-          subscript
+          SubscriptStack
         </h1>
         <p class="text-xs text-github-secondary">
           The official college networking platform

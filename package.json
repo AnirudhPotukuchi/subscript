@@ -1,0 +1,10 @@
+{
+  "name": "subscript-stack-root",
+  "private": true,
+  "scripts": {
+    "build": "npm install --prefix client && npm run build --prefix client && npx shx mkdir -p dist && npx shx cp -rf client/dist/* dist/"
+  },
+  "devDependencies": {
+    "shx": "^0.3.4"
+  }
+}

@@ -68,7 +68,7 @@ const handleSignup = async () => {
       <!-- Header -->
       <div class="text-center">
         <h1 class="text-2xl font-bold text-github-accent mb-1">
-          Join subscript
+          Join SubscriptStack
         </h1>
         <p class="text-xs text-github-secondary">
           Create an exclusive account to collaborate with peers & seniors
