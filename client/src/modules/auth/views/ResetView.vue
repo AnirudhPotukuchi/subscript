@@ -39,21 +39,21 @@ const handleResetPassword = async () => {
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-950 px-4 transition-colors duration-300">
-    <div class="w-full max-w-md bg-white/70 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 p-8 rounded-3xl shadow-2xl flex flex-col gap-6">
+  <div class="min-h-screen flex items-center justify-center bg-github-bg px-4 font-sans text-github-text">
+    <div class="w-full max-w-sm bg-github-surface border border-github-border p-6 rounded-[6px] flex flex-col gap-5">
       
       <div class="text-center">
-        <h1 class="text-2xl font-extrabold text-slate-800 dark:text-slate-100 mb-1">
+        <h1 class="text-xl font-bold text-github-text mb-1">
           Set New Password
         </h1>
-        <p class="text-xs text-slate-500">
+        <p class="text-xs text-github-secondary">
           Enter reset token details printed in server console alongside new credentials.
         </p>
       </div>
 
       <form @submit.prevent="handleResetPassword" class="flex flex-col gap-4">
         <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+          <label class="block text-xs font-semibold text-github-text mb-1.5">
             College Email
           </label>
           <input
@@ -61,12 +61,12 @@ const handleResetPassword = async () => {
             type="email"
             placeholder="student@college.edu"
             required
-            class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100"
+            class="github-input w-full"
           />
         </div>
 
         <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+          <label class="block text-xs font-semibold text-github-text mb-1.5">
             Reset Token
           </label>
           <input
@@ -74,12 +74,12 @@ const handleResetPassword = async () => {
             type="text"
             placeholder="Token key from terminal"
             required
-            class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100"
+            class="github-input w-full"
           />
         </div>
 
         <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+          <label class="block text-xs font-semibold text-github-text mb-1.5">
             New Password
           </label>
           <input
@@ -87,22 +87,22 @@ const handleResetPassword = async () => {
             type="password"
             placeholder="Min 6 characters"
             required
-            class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100"
+            class="github-input w-full"
           />
         </div>
 
         <button
           type="submit"
           :disabled="isLoading"
-          class="w-full mt-2 py-3 rounded-xl bg-primary-500 hover:bg-primary-600 text-white font-semibold text-sm transition-colors cursor-pointer flex justify-center items-center"
+          class="github-button-primary w-full mt-2 flex justify-center items-center h-9"
         >
-          <span v-if="isLoading" class="border-2 border-white/30 border-t-white h-4 w-4 rounded-full animate-spin"></span>
+          <span v-if="isLoading" class="border-2 border-white/20 border-t-white h-3.5 w-3.5 rounded-full animate-spin"></span>
           <span v-else>Reset Password</span>
         </button>
       </form>
 
-      <div class="text-center text-xs">
-        <router-link to="/login" class="text-primary-500 font-bold">
+      <div class="text-center text-xs text-github-secondary">
+        <router-link to="/login" class="text-github-accent hover:underline font-semibold">
           Back to Sign In
         </router-link>
       </div>

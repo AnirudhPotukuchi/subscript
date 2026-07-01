@@ -60,17 +60,17 @@ const handleSignup = async () => {
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-950 px-4 py-8 transition-colors duration-300">
+  <div class="min-h-screen flex items-center justify-center bg-github-bg px-4 py-8 font-sans text-github-text">
     
-    <!-- Large Signup Card -->
-    <div class="w-full max-w-lg bg-white/70 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 p-8 rounded-3xl shadow-2xl flex flex-col gap-6">
+    <!-- GitHub Dimmed Dark style Signup Card -->
+    <div class="w-full max-w-md bg-github-surface border border-github-border p-6 rounded-[6px] flex flex-col gap-5">
       
       <!-- Header -->
       <div class="text-center">
-        <h1 class="text-3xl font-extrabold bg-gradient-to-r from-primary-500 to-accent-500 bg-clip-text text-transparent mb-1 text-glow">
+        <h1 class="text-2xl font-bold text-github-accent mb-1">
           Join subscript
         </h1>
-        <p class="text-xs text-slate-500 dark:text-slate-400">
+        <p class="text-xs text-github-secondary">
           Create an exclusive account to collaborate with peers & seniors
         </p>
       </div>
@@ -80,7 +80,7 @@ const handleSignup = async () => {
         <!-- Row 1: Name and Roll Number -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+            <label class="block text-xs font-semibold text-github-text mb-1.5">
               Full Name
             </label>
             <input
@@ -88,11 +88,11 @@ const handleSignup = async () => {
               type="text"
               placeholder="Aditya Verma"
               required
-              class="w-full px-4 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all dark:text-slate-100"
+              class="github-input w-full"
             />
           </div>
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+            <label class="block text-xs font-semibold text-github-text mb-1.5">
               Roll Number
             </label>
             <input
@@ -100,7 +100,7 @@ const handleSignup = async () => {
               type="text"
               placeholder="CS23B1002"
               required
-              class="w-full px-4 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all dark:text-slate-100"
+              class="github-input w-full"
             />
           </div>
         </div>
@@ -108,12 +108,12 @@ const handleSignup = async () => {
         <!-- Row 2: Branch and Year/Section -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div class="sm:col-span-2">
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+            <label class="block text-xs font-semibold text-github-text mb-1.5">
               Department Branch
             </label>
             <select
               v-model="branch"
-              class="w-full px-4 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all dark:text-slate-100 cursor-pointer"
+              class="github-input w-full cursor-pointer"
             >
               <option v-for="b in branches" :key="b" :value="b">{{ b }}</option>
             </select>
@@ -121,12 +121,12 @@ const handleSignup = async () => {
 
           <div class="grid grid-cols-2 gap-2">
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+              <label class="block text-xs font-semibold text-github-text mb-1.5">
                 Year
               </label>
               <select
                 v-model="year"
-                class="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all dark:text-slate-100 cursor-pointer"
+                class="github-input w-full cursor-pointer"
               >
                 <option :value="1">1st</option>
                 <option :value="2">2nd</option>
@@ -135,7 +135,7 @@ const handleSignup = async () => {
               </select>
             </div>
             <div>
-              <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+              <label class="block text-xs font-semibold text-github-text mb-1.5">
                 Sec
               </label>
               <input
@@ -144,7 +144,7 @@ const handleSignup = async () => {
                 maxLength="1"
                 placeholder="A"
                 required
-                class="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none focus:ring-2 focus:ring-primary-500/50 text-center transition-all dark:text-slate-100"
+                class="github-input w-full text-center"
               />
             </div>
           </div>
@@ -152,7 +152,7 @@ const handleSignup = async () => {
 
         <!-- Row 3: College Email -->
         <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+          <label class="block text-xs font-semibold text-github-text mb-1.5">
             College Email Address (@college.edu)
           </label>
           <input
@@ -160,13 +160,13 @@ const handleSignup = async () => {
             type="email"
             placeholder="aditya.verma@college.edu"
             required
-            class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all dark:text-slate-100"
+            class="github-input w-full"
           />
         </div>
 
         <!-- Row 4: Password -->
         <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+          <label class="block text-xs font-semibold text-github-text mb-1.5">
             Password
           </label>
           <input
@@ -174,7 +174,7 @@ const handleSignup = async () => {
             type="password"
             placeholder="Min 6 characters"
             required
-            class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all dark:text-slate-100"
+            class="github-input w-full"
           />
         </div>
 
@@ -182,18 +182,18 @@ const handleSignup = async () => {
         <button
           type="submit"
           :disabled="isLoading"
-          class="w-full mt-2 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold text-sm shadow-md shadow-primary-500/20 active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none cursor-pointer flex justify-center items-center"
+          class="github-button-primary w-full mt-2 flex justify-center items-center h-9"
         >
-          <span v-if="isLoading" class="border-2 border-white/30 border-t-white h-4 w-4 rounded-full animate-spin"></span>
+          <span v-if="isLoading" class="border-2 border-white/20 border-t-white h-3.5 w-3.5 rounded-full animate-spin"></span>
           <span v-else>Register Profile</span>
         </button>
 
       </form>
 
       <!-- Toggle Signup Link -->
-      <div class="text-center text-xs text-slate-500 dark:text-slate-400">
+      <div class="text-center text-xs text-github-secondary">
         Already registered?
-        <router-link to="/login" class="text-primary-500 hover:text-primary-600 font-bold ml-1">
+        <router-link to="/login" class="text-github-accent hover:underline font-semibold ml-1">
           Sign In here
         </router-link>
       </div>

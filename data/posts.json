@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "authorId": "admin-user-id",
+    "authorName": "Jane Doe",
+    "authorPicture": "https://api.dicebear.com/7.x/adventurer/svg?seed=Jane%20Doe",
+    "content": "Hello this is my first post",
+    "images": [],
+    "pdfs": [],
+    "codeSnippets": [],
+    "likesCount": 0,
+    "likes": [],
+    "commentsCount": 0,
+    "tags": [
+      "hello"
+    ],
+    "moderationStatus": "approved",
+    "toxicityScore": 0,
+    "id": "150sqn23ztj",
+    "createdAt": "2026-07-01T16:52:06.372Z",
+    "updatedAt": "2026-07-01T16:52:13.410Z"
+  }
+]

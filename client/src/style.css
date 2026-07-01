@@ -1,90 +1,96 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #f0f7ff;
-  --color-primary-100: #e0effe;
-  --color-primary-200: #bae0fd;
-  --color-primary-300: #7cc7fc;
-  --color-primary-400: #38abf9;
-  --color-primary-500: #0e8fe3;
-  --color-primary-600: #0271c2;
-  --color-primary-700: #035aa0;
-  --color-primary-800: #074c83;
-  --color-primary-900: #0c406d;
-  --color-primary-950: #082849;
-
-  --color-accent-50: #faf5ff;
-  --color-accent-100: #f3e8ff;
-  --color-accent-200: #e9d5ff;
-  --color-accent-300: #d8b4fe;
-  --color-accent-400: #c084fc;
-  --color-accent-500: #a855f7;
-  --color-accent-600: #9333ea;
-  --color-accent-700: #7e22ce;
-  --color-accent-800: #6b21a8;
-  --color-accent-900: #581c87;
+  --color-github-bg: #000000;
+  --color-github-surface: #000000;
+  --color-github-border: #444c56;
+  --color-github-accent: #539bf5;
+  --color-github-text: #adbac7;
+  --color-github-secondary: #768390;
+  --color-github-success: #57ab5a;
+  --color-github-danger: #e5534b;
   
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Pro Text", Menlo, Consolas, monospace;
 }
 
-@utility glass-card {
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+@utility github-border {
+  border: 1px solid var(--color-github-border);
 }
 
-.dark .glass-card {
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+@utility github-card {
+  background-color: var(--color-github-surface);
+  border: 1px solid var(--color-github-border);
+  border-radius: 6px;
 }
 
-@utility glass-nav {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+@utility github-button {
+  background-color: var(--color-github-surface);
+  border: 1px solid var(--color-github-border);
+  color: var(--color-github-text);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.1s ease, border-color 0.1s ease;
 }
 
-.dark .glass-nav {
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+@utility github-button-primary {
+  background-color: var(--color-github-accent);
+  border: 1px solid var(--color-github-accent);
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
 }
 
-@utility text-glow {
-  text-shadow: 0 0 10px rgba(14, 143, 227, 0.4);
+.github-button:hover {
+  background-color: #2d333b;
+}
+
+.github-button-primary:hover {
+  background-color: #6cb6ff;
+}
+
+@utility github-input {
+  background-color: var(--color-github-bg);
+  border: 1px solid var(--color-github-border);
+  color: var(--color-github-text);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.github-input:focus {
+  border-color: var(--color-github-accent);
+  box-shadow: 0 0 0 3px rgba(83, 155, 245, 0.3);
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 transition-colors duration-300;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  background-color: var(--color-github-bg);
+  color: var(--color-github-text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  font-size: 0.875rem;
 }
 
-.dark body {
-  @apply bg-slate-950 text-slate-100;
-}
-
-/* Custom scrollbars */
+/* Custom scrollbars matching GitHub style */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-transparent;
+  background: var(--color-github-bg);
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-200 rounded-full transition-colors;
-}
-.dark ::-webkit-scrollbar-thumb {
-  @apply bg-slate-800;
+  background: var(--color-github-border);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-400;
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-700;
+  background: var(--color-github-secondary);
 }

@@ -133,57 +133,57 @@ const handleFollow = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-6">
+  <div class="flex flex-col gap-3">
     
-    <div v-if="isLoading" class="glass-card rounded-3xl p-8 animate-pulse flex flex-col gap-6">
-      <div class="flex flex-col sm:flex-row items-center gap-6">
-        <div class="w-24 h-24 rounded-full bg-slate-200 dark:bg-slate-800"></div>
-        <div class="flex-1 flex flex-col gap-2">
-          <div class="w-48 h-6 bg-slate-200 dark:bg-slate-800 rounded"></div>
-          <div class="w-32 h-4 bg-slate-200 dark:bg-slate-800 rounded"></div>
+    <div v-if="isLoading" class="github-card p-4 animate-pulse flex flex-col gap-3">
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <div class="w-16 h-16 rounded-full bg-[#2d333b]"></div>
+        <div class="flex-1 flex flex-col gap-1.5">
+          <div class="w-48 h-4 bg-[#2d333b] rounded"></div>
+          <div class="w-32 h-3 bg-[#2d333b] rounded"></div>
         </div>
       </div>
-      <div class="w-full h-24 bg-slate-200 dark:bg-slate-800 rounded-xl"></div>
+      <div class="w-full h-12 bg-[#2d333b] rounded-[6px]"></div>
     </div>
 
-    <div v-else-if="!profile" class="glass-card rounded-3xl p-12 text-center text-slate-400">
+    <div v-else-if="!profile" class="github-card p-8 text-center text-github-secondary">
       Requested user profile does not exist.
     </div>
 
     <!-- Active Profile view -->
-    <div v-else class="flex flex-col gap-6">
+    <div v-else class="flex flex-col gap-3">
       
       <!-- Profile Header block -->
-      <div class="glass-card rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 shadow-sm border border-slate-200/50 dark:border-slate-800/50">
+      <div class="github-card p-4 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
         <img
           :src="profile.profilePicture"
           alt="Avatar"
-          class="w-24 h-24 rounded-full border-4 border-white dark:border-slate-900 object-cover shadow-md"
+          class="w-20 h-20 rounded-full border border-github-border object-cover"
         />
         
-        <div class="flex-1 flex flex-col gap-2">
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex-1 flex flex-col gap-1.5 w-full">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
             <div>
-              <h2 class="text-2xl font-extrabold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+              <h2 class="text-base font-bold text-github-text flex items-center gap-2 justify-center sm:justify-start">
                 {{ profile.fullName }}
                 <span
                   v-if="profile.role === 'admin' || profile.role === 'moderator'"
-                  class="text-[10px] px-2 py-0.5 bg-accent-500/10 text-accent-600 rounded-full font-bold border border-accent-500/20"
+                  class="text-[10px] px-1.5 py-0.2 bg-github-accent/10 text-github-accent rounded-[4px] font-bold border border-github-accent/25"
                 >
                   MOD
                 </span>
               </h2>
-              <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">
+              <p class="text-[11px] text-github-secondary font-semibold mt-0.5">
                 Roll: {{ profile.rollNumber }} &bull; Branch: {{ profile.branch }} &bull; Year: {{ profile.year }} &bull; Sec: {{ profile.section }}
               </p>
             </div>
             
             <!-- Actions: Edit (if self) or Follow (if peer) -->
-            <div class="flex gap-2">
+            <div class="flex gap-1.5 shrink-0">
               <button
                 v-if="profile.uid === authStore.user?.uid"
                 @click="isEditing = !isEditing"
-                class="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs rounded-xl border border-slate-200/50 dark:border-slate-800/50 cursor-pointer select-none transition-colors"
+                class="github-button h-8 flex items-center justify-center font-bold text-xs"
               >
                 {{ isEditing ? 'Cancel Edit' : 'Edit Profile' }}
               </button>
@@ -193,10 +193,10 @@ const handleFollow = async () => {
                 @click="handleFollow"
                 :disabled="isFollowLoading"
                 :class="[
-                  'px-5 py-2 font-bold text-xs rounded-xl cursor-pointer select-none transition-colors border',
+                  'h-8 flex items-center justify-center font-bold text-xs px-4 rounded-[4px] cursor-pointer select-none transition-colors border',
                   profile.followers.includes(authStore.user?.uid)
-                    ? 'bg-slate-100 dark:bg-slate-900 text-slate-500 border-slate-200 dark:border-slate-800'
-                    : 'bg-primary-500 hover:bg-primary-600 text-white border-transparent shadow-md shadow-primary-500/15'
+                    ? 'bg-[#2d333b] text-github-secondary border-github-border hover:bg-github-surface'
+                    : 'github-button-primary'
                 ]"
               >
                 {{ profile.followers.includes(authStore.user?.uid) ? 'Following' : 'Follow Student' }}
@@ -204,19 +204,19 @@ const handleFollow = async () => {
             </div>
           </div>
 
-          <p class="text-sm text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
+          <p class="text-xs text-github-text max-w-2xl leading-relaxed mt-1">
             {{ profile.bio || "No professional bio written yet. Click 'Edit Profile' to add your summary!" }}
           </p>
 
-          <div class="flex items-center gap-6 text-xs text-slate-400 font-semibold mt-2">
+          <div class="flex items-center gap-4 text-xs text-github-secondary font-semibold mt-2 justify-center sm:justify-start">
             <span>{{ profile.followersCount || 0 }} Followers</span>
             <span>{{ profile.followingCount || 0 }} Following</span>
             <span
               :class="[
-                'px-2 py-0.5 rounded-full border text-[10px] font-bold uppercase',
-                profile.placementStatus === 'placed' ? 'bg-emerald-500/15 text-emerald-500 border-emerald-500/20' : '',
-                profile.placementStatus === 'internship' ? 'bg-primary-500/15 text-primary-500 border-primary-500/20' : '',
-                profile.placementStatus === 'unplaced' ? 'bg-amber-500/15 text-amber-500 border-amber-500/20' : ''
+                'px-1.5 py-0.2 rounded-[4px] border text-[10px] font-bold uppercase',
+                profile.placementStatus === 'placed' ? 'bg-github-success/10 text-github-success border-github-success/25' : '',
+                profile.placementStatus === 'internship' ? 'bg-github-accent/10 text-github-accent border-github-accent/25' : '',
+                profile.placementStatus === 'unplaced' ? 'bg-amber-500/10 text-amber-500 border-amber-500/25' : ''
               ]"
             >
               {{ profile.placementStatus }} {{ profile.currentCompany ? `at ${profile.currentCompany}` : '' }}
@@ -227,18 +227,18 @@ const handleFollow = async () => {
       </div>
 
       <!-- Editing Card -->
-      <div v-if="isEditing" class="glass-card rounded-3xl p-6 md:p-8 flex flex-col gap-4 border border-primary-500/30">
-        <h3 class="text-base font-bold text-slate-800 dark:text-slate-200">Update Profile Portfolio</h3>
+      <div v-if="isEditing" class="github-card p-4 flex flex-col gap-3 border-github-accent/30">
+        <h3 class="text-xs font-bold text-github-text uppercase tracking-wide border-b border-github-border pb-1">Update Profile Portfolio</h3>
         
-        <form @submit.prevent="handleSaveProfile" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <form @submit.prevent="handleSaveProfile" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Full Name</label>
-            <input v-model="editForm.fullName" type="text" class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">Full Name</label>
+            <input v-model="editForm.fullName" type="text" class="github-input w-full text-xs h-8 py-1" />
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Placement Status</label>
-            <select v-model="editForm.placementStatus" class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:outline-none dark:text-slate-100">
+            <label class="block text-xs font-semibold text-github-text mb-1">Placement Status</label>
+            <select v-model="editForm.placementStatus" class="github-input w-full text-xs h-8 py-1 cursor-pointer">
               <option value="unplaced">Unplaced</option>
               <option value="internship">Internship Offer</option>
               <option value="placed">Full-Time Placed</option>
@@ -246,56 +246,56 @@ const handleFollow = async () => {
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Current Company (if placed/intern)</label>
-            <input v-model="editForm.currentCompany" type="text" class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">Current Company (if placed/intern)</label>
+            <input v-model="editForm.currentCompany" type="text" class="github-input w-full text-xs h-8 py-1" />
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Bio Summary</label>
-            <input v-model="editForm.bio" type="text" class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">Bio Summary</label>
+            <input v-model="editForm.bio" type="text" class="github-input w-full text-xs h-8 py-1" />
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Skills (comma separated)</label>
-            <input v-model="editForm.skills" type="text" placeholder="e.g. React, Spring Boot, Data Structures" class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">Skills (comma separated)</label>
+            <input v-model="editForm.skills" type="text" placeholder="e.g. React, Spring Boot, Data Structures" class="github-input w-full text-xs h-8 py-1" />
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Programming Languages</label>
-            <input v-model="editForm.programmingLanguages" type="text" placeholder="e.g. C++, Java, Python" class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">Programming Languages</label>
+            <input v-model="editForm.programmingLanguages" type="text" placeholder="e.g. C++, Java, Python" class="github-input w-full text-xs h-8 py-1" />
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Tech Stack</label>
-            <input v-model="editForm.techStack" type="text" placeholder="e.g. MERN, LAMP" class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">Tech Stack</label>
+            <input v-model="editForm.techStack" type="text" placeholder="e.g. MERN, LAMP" class="github-input w-full text-xs h-8 py-1" />
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Github URL</label>
-            <input v-model="editForm.githubUrl" type="url" class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">Github URL</label>
+            <input v-model="editForm.githubUrl" type="url" class="github-input w-full text-xs h-8 py-1" />
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">LeetCode URL</label>
-            <input v-model="editForm.leetcodeUrl" type="url" class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">LeetCode URL</label>
+            <input v-model="editForm.leetcodeUrl" type="url" class="github-input w-full text-xs h-8 py-1" />
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">LinkedIn URL</label>
-            <input v-model="editForm.linkedinUrl" type="url" class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">LinkedIn URL</label>
+            <input v-model="editForm.linkedinUrl" type="url" class="github-input w-full text-xs h-8 py-1" />
           </div>
 
-          <div class="sm:col-span-2 flex justify-end gap-2 mt-2">
+          <div class="sm:col-span-2 flex justify-end gap-2 border-t border-github-border pt-2 mt-1">
             <button
               type="button"
               @click="isEditing = false"
-              class="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-slate-600 cursor-pointer"
+              class="github-button h-8 flex items-center justify-center"
             >
               Cancel
             </button>
             <button
               type="submit"
-              class="px-5 py-2.5 bg-primary-500 text-white font-semibold text-xs rounded-xl cursor-pointer"
+              class="github-button-primary h-8 flex items-center justify-center"
             >
               Save Profile
             </button>
@@ -304,64 +304,64 @@ const handleFollow = async () => {
       </div>
 
       <!-- Core Portfolio Cards grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         
         <!-- Left Pane: Technical Skills details -->
-        <div class="flex flex-col gap-6 md:col-span-1">
+        <div class="flex flex-col gap-3 md:col-span-1">
           
-          <div class="glass-card rounded-2xl p-5 shadow-sm">
-            <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-4 uppercase tracking-wider">
+          <div class="github-card p-4">
+            <h3 class="text-xs font-bold text-github-text mb-3 uppercase tracking-wider border-b border-github-border pb-1">
               Technical Stack
             </h3>
             
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-3">
               <div>
-                <span class="text-[10px] font-bold text-slate-400 uppercase">Core Stack</span>
-                <div class="flex flex-wrap gap-1.5 mt-1.5">
+                <span class="text-[9px] font-bold text-github-secondary uppercase">Core Stack</span>
+                <div class="flex flex-wrap gap-1 mt-1">
                   <span
                     v-for="st in profile.techStack"
                     :key="st"
-                    class="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300 rounded-lg border border-slate-200/40 dark:border-slate-800/40 font-medium"
+                    class="text-xs px-2 py-0.5 bg-github-bg text-github-text rounded-[4px] border border-github-border font-semibold"
                   >
                     {{ st }}
                   </span>
-                  <span v-if="!profile.techStack || profile.techStack.length === 0" class="text-xs text-slate-400">Not specified</span>
+                  <span v-if="!profile.techStack || profile.techStack.length === 0" class="text-xs text-github-secondary">Not specified</span>
                 </div>
               </div>
 
               <div>
-                <span class="text-[10px] font-bold text-slate-400 uppercase">Programming Languages</span>
-                <div class="flex flex-wrap gap-1.5 mt-1.5">
+                <span class="text-[9px] font-bold text-github-secondary uppercase">Programming Languages</span>
+                <div class="flex flex-wrap gap-1 mt-1">
                   <span
                     v-for="pl in profile.programmingLanguages"
                     :key="pl"
-                    class="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300 rounded-lg border border-slate-200/40 dark:border-slate-800/40 font-medium"
+                    class="text-xs px-2 py-0.5 bg-github-bg text-github-text rounded-[4px] border border-github-border font-semibold"
                   >
                     {{ pl }}
                   </span>
-                  <span v-if="!profile.programmingLanguages || profile.programmingLanguages.length === 0" class="text-xs text-slate-400">Not specified</span>
+                  <span v-if="!profile.programmingLanguages || profile.programmingLanguages.length === 0" class="text-xs text-github-secondary">Not specified</span>
                 </div>
               </div>
 
               <div>
-                <span class="text-[10px] font-bold text-slate-400 uppercase">Skill Badges</span>
-                <div class="flex flex-wrap gap-1.5 mt-1.5">
+                <span class="text-[9px] font-bold text-github-secondary uppercase">Skill Badges</span>
+                <div class="flex flex-wrap gap-1 mt-1">
                   <span
                     v-for="sk in profile.skills"
                     :key="sk"
-                    class="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300 rounded-lg border border-slate-200/40 dark:border-slate-800/40 font-medium"
+                    class="text-xs px-2 py-0.5 bg-github-bg text-github-text rounded-[4px] border border-github-border font-semibold"
                   >
                     {{ sk }}
                   </span>
-                  <span v-if="!profile.skills || profile.skills.length === 0" class="text-xs text-slate-400">Not specified</span>
+                  <span v-if="!profile.skills || profile.skills.length === 0" class="text-xs text-github-secondary">Not specified</span>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Portals Links -->
-          <div class="glass-card rounded-2xl p-5 shadow-sm flex flex-col gap-3">
-            <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-2 uppercase tracking-wider">
+          <div class="github-card p-4 flex flex-col gap-2">
+            <h3 class="text-xs font-bold text-github-text mb-2 uppercase tracking-wider border-b border-github-border pb-1">
               Profile Badges
             </h3>
             
@@ -369,7 +369,7 @@ const handleFollow = async () => {
               v-if="profile.githubUrl"
               :href="profile.githubUrl"
               target="_blank"
-              class="flex items-center gap-3 text-xs text-slate-600 dark:text-slate-300 hover:text-primary-500 font-semibold transition-colors"
+              class="flex items-center gap-2 text-xs text-github-text hover:text-github-accent font-semibold hover:underline transition-colors"
             >
               <span>GitHub Profile</span>
             </a>
@@ -378,7 +378,7 @@ const handleFollow = async () => {
               v-if="profile.linkedinUrl"
               :href="profile.linkedinUrl"
               target="_blank"
-              class="flex items-center gap-3 text-xs text-slate-600 dark:text-slate-300 hover:text-primary-500 font-semibold transition-colors"
+              class="flex items-center gap-2 text-xs text-github-text hover:text-github-accent font-semibold hover:underline transition-colors"
             >
               <span>LinkedIn Network</span>
             </a>
@@ -387,12 +387,12 @@ const handleFollow = async () => {
               v-if="profile.leetcodeUrl"
               :href="profile.leetcodeUrl"
               target="_blank"
-              class="flex items-center gap-3 text-xs text-slate-600 dark:text-slate-300 hover:text-primary-500 font-semibold transition-colors"
+              class="flex items-center gap-2 text-xs text-github-text hover:text-github-accent font-semibold hover:underline transition-colors"
             >
               <span>LeetCode Practice</span>
             </a>
 
-            <div v-if="!profile.githubUrl && !profile.linkedinUrl && !profile.leetcodeUrl" class="text-xs text-slate-400">
+            <div v-if="!profile.githubUrl && !profile.linkedinUrl && !profile.leetcodeUrl" class="text-xs text-github-secondary">
               No portfolio badges linked.
             </div>
           </div>
@@ -400,56 +400,56 @@ const handleFollow = async () => {
         </div>
 
         <!-- Right Pane: Projects list & achievements -->
-        <div class="flex flex-col gap-6 md:col-span-2">
+        <div class="flex flex-col gap-3 md:col-span-2">
           
-          <div class="glass-card rounded-2xl p-6 shadow-sm">
-            <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider mb-4">
+          <div class="github-card p-4">
+            <h3 class="text-xs font-bold text-github-text mb-3 uppercase tracking-wider border-b border-github-border pb-1">
               Projects & Portfolios
             </h3>
 
             <!-- Projects Empty State -->
-            <div v-if="!profile.projects || profile.projects.length === 0" class="text-center py-6 text-xs text-slate-400 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl">
+            <div v-if="!profile.projects || profile.projects.length === 0" class="text-center py-6 text-xs text-github-secondary border border-dashed border-github-border rounded-[6px]">
               No technical projects added to portfolio directory.
             </div>
 
-            <div v-else class="flex flex-col gap-4">
+            <div v-else class="flex flex-col gap-3">
               <div
                 v-for="proj in profile.projects"
                 :key="proj.title"
-                class="p-4 rounded-xl border border-slate-200/50 dark:border-slate-800/50 flex flex-col gap-2 bg-slate-50/30 dark:bg-slate-900/10"
+                class="p-3 rounded-[6px] border border-github-border flex flex-col gap-1.5 bg-github-bg"
               >
                 <div class="flex justify-between items-center">
-                  <h4 class="text-sm font-bold text-slate-800 dark:text-slate-100">{{ proj.title }}</h4>
+                  <h4 class="text-xs font-bold text-github-text">{{ proj.title }}</h4>
                   <div class="flex gap-2">
-                    <a v-if="proj.githubUrl" :href="proj.githubUrl" target="_blank" class="text-xs text-primary-500 hover:underline">Code</a>
-                    <a v-if="proj.liveUrl" :href="proj.liveUrl" target="_blank" class="text-xs text-primary-500 hover:underline">Live Demo</a>
+                    <a v-if="proj.githubUrl" :href="proj.githubUrl" target="_blank" class="text-xs text-github-accent hover:underline font-semibold">Code</a>
+                    <a v-if="proj.liveUrl" :href="proj.liveUrl" target="_blank" class="text-xs text-github-accent hover:underline font-semibold">Live Demo</a>
                   </div>
                 </div>
-                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ proj.description }}</p>
+                <p class="text-xs text-github-secondary leading-relaxed">{{ proj.description }}</p>
               </div>
             </div>
           </div>
 
           <!-- Internships & Work Experience -->
-          <div class="glass-card rounded-2xl p-6 shadow-sm">
-            <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider mb-4">
+          <div class="github-card p-4">
+            <h3 class="text-xs font-bold text-github-text mb-3 uppercase tracking-wider border-b border-github-border pb-1">
               Work Experience & Internships
             </h3>
 
-            <div v-if="!profile.internships || profile.internships.length === 0" class="text-center py-6 text-xs text-slate-400 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl">
+            <div v-if="!profile.internships || profile.internships.length === 0" class="text-center py-6 text-xs text-github-secondary border border-dashed border-github-border rounded-[6px]">
               No prior internship records uploaded.
             </div>
 
-            <div v-else class="flex flex-col gap-4">
+            <div v-else class="flex flex-col gap-3">
               <div
                 v-for="intern in profile.internships"
                 :key="intern.company"
-                class="flex gap-4 items-start"
+                class="flex gap-2 items-start"
               >
-                <div class="w-2.5 h-2.5 rounded-full bg-primary-500 mt-1.5 shrink-0"></div>
+                <div class="w-2 h-2 rounded-full bg-github-accent mt-1.5 shrink-0"></div>
                 <div>
-                  <h4 class="text-xs font-bold text-slate-800 dark:text-slate-100">{{ intern.role }} &bull; {{ intern.company }}</h4>
-                  <p class="text-[10px] text-slate-400 font-semibold">{{ intern.duration }}</p>
+                  <h4 class="text-xs font-bold text-github-text">{{ intern.role }} &bull; {{ intern.company }}</h4>
+                  <p class="text-[10px] text-github-secondary font-semibold">{{ intern.duration }}</p>
                 </div>
               </div>
             </div>

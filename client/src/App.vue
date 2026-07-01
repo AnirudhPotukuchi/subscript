@@ -12,7 +12,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 transition-colors duration-300">
+  <div class="min-h-screen bg-github-bg font-sans text-github-text transition-colors duration-300">
     <router-view />
 
     <!-- Premium Floating Toast System -->
@@ -22,19 +22,19 @@ onMounted(() => {
           v-for="toast in toastStore.toasts"
           :key="toast.id"
           :class="[
-            'flex items-center p-4 rounded-xl shadow-lg border backdrop-blur-md transition-all duration-300',
-            toast.type === 'success' ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-400' : '',
-            toast.type === 'error' ? 'bg-rose-500/10 border-rose-500/30 text-rose-600 dark:text-rose-400' : '',
-            toast.type === 'warning' ? 'bg-amber-500/10 border-amber-500/30 text-amber-600 dark:text-amber-400' : '',
-            toast.type === 'info' ? 'bg-sky-500/10 border-sky-500/30 text-sky-600 dark:text-sky-400' : ''
+            'flex items-center p-3 rounded-[6px] border transition-all duration-300',
+            toast.type === 'success' ? 'bg-github-success/10 border-github-success/30 text-github-success' : '',
+            toast.type === 'error' ? 'bg-github-danger/10 border-github-danger/30 text-github-danger' : '',
+            toast.type === 'warning' ? 'bg-amber-500/10 border-amber-500/30 text-amber-500' : '',
+            toast.type === 'info' ? 'bg-github-accent/10 border-github-accent/30 text-github-accent' : ''
           ]"
         >
-          <div class="flex-1 mr-3 text-sm font-medium">
+          <div class="flex-1 mr-3 text-xs font-semibold">
             {{ toast.text }}
           </div>
           <button
             @click="toastStore.remove(toast.id)"
-            class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors cursor-pointer"
+            class="text-github-secondary hover:text-github-text transition-colors cursor-pointer text-sm"
           >
             &times;
           </button>

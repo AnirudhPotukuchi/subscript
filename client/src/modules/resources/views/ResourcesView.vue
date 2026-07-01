@@ -102,20 +102,20 @@ const handleDownload = async (resource: any) => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-6">
+  <div class="flex flex-col gap-3">
     
     <!-- Top Tabs Grid Navigation -->
-    <div class="flex items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-1 overflow-x-auto">
-      <div class="flex gap-2">
+    <div class="flex items-center justify-between gap-3 border-b border-github-border pb-1 overflow-x-auto">
+      <div class="flex gap-1.5">
         <button
           v-for="cat in categories"
           :key="cat.value"
           @click="loadResources(cat.value)"
           :class="[
-            'px-4 py-2.5 text-xs font-bold whitespace-nowrap rounded-xl transition-all cursor-pointer select-none',
+            'px-3 py-1.5 text-xs font-bold whitespace-nowrap rounded-[4px] transition-all cursor-pointer select-none border',
             activeTab === cat.value
-              ? 'bg-primary-500/10 text-primary-600 dark:text-primary-400 border border-primary-500/25'
-              : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent'
+              ? 'bg-[#2d333b] text-github-accent border-github-border'
+              : 'text-github-secondary hover:text-github-text hover:bg-[#2d333b] border-transparent'
           ]"
         >
           {{ cat.label }}
@@ -124,66 +124,66 @@ const handleDownload = async (resource: any) => {
 
       <button
         @click="showUploadModal = true"
-        class="px-5 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold text-xs rounded-xl cursor-pointer shadow-md shadow-primary-500/10 transition-colors select-none shrink-0"
+        class="github-button-primary shrink-0 h-8 flex items-center justify-center font-bold text-xs"
       >
         Upload Resource
       </button>
     </div>
 
     <!-- Loading skeletons -->
-    <div v-if="isLoading" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div v-for="i in 4" :key="i" class="glass-card rounded-2xl p-5 animate-pulse flex flex-col gap-3">
-        <div class="w-36 h-4 bg-slate-200 dark:bg-slate-800 rounded"></div>
-        <div class="w-full h-12 bg-slate-200 dark:bg-slate-800 rounded"></div>
+    <div v-if="isLoading" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div v-for="i in 4" :key="i" class="github-card p-4 animate-pulse flex flex-col gap-3">
+        <div class="w-36 h-4 bg-[#2d333b] rounded"></div>
+        <div class="w-full h-12 bg-[#2d333b] rounded-[6px]"></div>
       </div>
     </div>
 
     <!-- Resource items List Grid -->
-    <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-3">
       
-      <div v-if="resources.length === 0" class="col-span-2 glass-card rounded-2xl p-12 text-center text-slate-400 border border-dashed border-slate-200 dark:border-slate-800">
+      <div v-if="resources.length === 0" class="col-span-2 github-card p-8 text-center text-github-secondary border-dashed border-github-border">
         No shared resources uploaded in this category yet. Be the first to share notes or guides!
       </div>
 
       <div
         v-for="res in resources"
         :key="res.id"
-        class="glass-card rounded-2xl p-5 shadow-sm border border-slate-200/50 dark:border-slate-800/50 flex flex-col justify-between gap-4 hover:shadow-md transition-shadow"
+        class="github-card p-3 flex flex-col justify-between gap-3"
       >
         
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-1.5">
           <!-- Type and Title -->
           <div class="flex items-center justify-between gap-3">
-            <span class="text-[9px] font-extrabold uppercase px-2 py-0.5 bg-primary-500/15 text-primary-500 border border-primary-500/20 rounded-md">
+            <span class="text-[9px] font-bold uppercase px-1.5 py-0.2 bg-github-accent/10 text-github-accent border border-github-accent/25 rounded-[4px] shrink-0">
               {{ res.type }}
             </span>
-            <span class="text-[10px] text-slate-400 font-medium">Uploaded by {{ res.authorName }}</span>
+            <span class="text-[10px] text-github-secondary font-medium truncate">Uploaded by {{ res.authorName }}</span>
           </div>
 
-          <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100 mt-1 leading-snug">
+          <h3 class="text-xs font-bold text-github-text mt-1 leading-snug">
             {{ res.title }}
           </h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+          <p class="text-xs text-github-secondary leading-relaxed line-clamp-2">
             {{ res.description }}
           </p>
 
           <!-- Tags -->
           <div v-if="res.tags && res.tags.length > 0" class="flex flex-wrap gap-1 mt-1">
-            <span v-for="t in res.tags" :key="t" class="text-[10px] text-slate-400 bg-slate-100 dark:bg-slate-900/60 px-2 py-0.5 rounded">
+            <span v-for="t in res.tags" :key="t" class="text-[10px] text-github-secondary bg-github-bg border border-github-border px-1.5 py-0.5 rounded-[4px]">
               #{{ t }}
             </span>
           </div>
         </div>
 
         <!-- Downloads Footer and Download Trigger -->
-        <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60 pt-4 mt-2">
-          <span class="text-[10px] text-slate-400 font-semibold">
+        <div class="flex items-center justify-between border-t border-github-border pt-3 mt-1">
+          <span class="text-[10px] text-github-secondary font-semibold">
             {{ res.downloadsCount || 0 }} accesses logged
           </span>
 
           <button
             @click="handleDownload(res)"
-            class="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs rounded-xl cursor-pointer select-none transition-colors border border-slate-200/50 dark:border-slate-800/50"
+            class="github-button h-8 flex items-center justify-center shrink-0"
           >
             Access / View
           </button>
@@ -195,31 +195,31 @@ const handleDownload = async (resource: any) => {
 
     <!-- Upload Resource Modal -->
     <div v-if="showUploadModal" class="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div @click="showUploadModal = false" class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"></div>
+      <div @click="showUploadModal = false" class="absolute inset-0 bg-[#000000]/50"></div>
       
-      <div class="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-3xl shadow-2xl relative z-10 flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-200">
+      <div class="w-full max-w-lg bg-github-surface border border-github-border p-4 rounded-[6px] relative z-10 flex flex-col gap-3 animate-in fade-in zoom-in-95 duration-150">
         
-        <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3">
-          <h2 class="text-base font-bold text-slate-800 dark:text-slate-200">Share Academic Material</h2>
-          <button @click="showUploadModal = false" class="text-slate-400 hover:text-slate-600 text-lg cursor-pointer">&times;</button>
+        <div class="flex justify-between items-center border-b border-github-border pb-2">
+          <h2 class="text-xs font-bold text-github-text uppercase tracking-wide">Share Academic Material</h2>
+          <button @click="showUploadModal = false" class="text-github-secondary hover:text-github-text text-base cursor-pointer">&times;</button>
         </div>
 
-        <form @submit.prevent="handleShareResource" class="flex flex-col gap-4">
+        <form @submit.prevent="handleShareResource" class="flex flex-col gap-3">
           
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Title</label>
-            <input v-model="title" type="text" placeholder="e.g. Operating Systems Lecture Notes Units 1-3" required class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">Title</label>
+            <input v-model="title" type="text" placeholder="e.g. Operating Systems Lecture Notes Units 1-3" required class="github-input w-full text-xs h-8 py-1" />
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Description</label>
-            <textarea v-model="description" rows="3" placeholder="Brief summary of OS topics covered (e.g. Semaphores, Scheduling)..." required class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100 resize-none"></textarea>
+            <label class="block text-xs font-semibold text-github-text mb-1">Description</label>
+            <textarea v-model="description" rows="2" placeholder="Brief summary of OS topics covered (e.g. Semaphores, Scheduling)..." required class="github-input w-full resize-none text-xs"></textarea>
           </div>
 
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Material Type</label>
-              <select v-model="type" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:outline-none dark:text-slate-100 cursor-pointer">
+              <label class="block text-xs font-semibold text-github-text mb-1">Material Type</label>
+              <select v-model="type" class="github-input w-full text-xs h-8 py-1 cursor-pointer">
                 <option value="notes">Lecture Notes</option>
                 <option value="pdf">PDF File</option>
                 <option value="cheat-sheet">Cheat Sheet</option>
@@ -230,34 +230,34 @@ const handleDownload = async (resource: any) => {
             </div>
 
             <div>
-              <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Target Category</label>
-              <select v-model="category" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:outline-none dark:text-slate-100 cursor-pointer">
+              <label class="block text-xs font-semibold text-github-text mb-1">Target Category</label>
+              <select v-model="category" class="github-input w-full text-xs h-8 py-1 cursor-pointer">
                 <option v-for="cat in categories" :key="cat.value" :value="cat.value">{{ cat.label }}</option>
               </select>
             </div>
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Academic Semester (optional)</label>
-            <select v-model="semester" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 focus:outline-none dark:text-slate-100 cursor-pointer">
+            <label class="block text-xs font-semibold text-github-text mb-1">Academic Semester (optional)</label>
+            <select v-model="semester" class="github-input w-full text-xs h-8 py-1 cursor-pointer">
               <option :value="undefined">No Specific Semester</option>
               <option v-for="s in 8" :key="s" :value="s">Semester {{ s }}</option>
             </select>
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Resource Link (Google Drive / GitHub)</label>
-            <input v-model="url" type="url" placeholder="https://drive.google.com/..." class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">Resource Link (Google Drive / GitHub)</label>
+            <input v-model="url" type="url" placeholder="https://drive.google.com/..." class="github-input w-full text-xs h-8 py-1" />
           </div>
 
           <div>
-            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Topic Tags (comma separated)</label>
-            <input v-model="tags" type="text" placeholder="e.g. os, cse, notes" class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 focus:outline-none dark:text-slate-100" />
+            <label class="block text-xs font-semibold text-github-text mb-1">Topic Tags (comma separated)</label>
+            <input v-model="tags" type="text" placeholder="e.g. os, cse, notes" class="github-input w-full text-xs h-8 py-1" />
           </div>
 
-          <div class="flex justify-end gap-2 border-t border-slate-100 dark:border-slate-800 pt-3 mt-2">
-            <button type="button" @click="showUploadModal = false" class="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-slate-600 cursor-pointer">Cancel</button>
-            <button type="submit" class="px-5 py-2.5 bg-primary-500 text-white font-semibold text-xs rounded-xl cursor-pointer shadow-md shadow-primary-500/10">Upload material</button>
+          <div class="flex justify-end gap-2 border-t border-github-border pt-2 mt-2">
+            <button type="button" @click="showUploadModal = false" class="github-button h-8 flex items-center justify-center">Cancel</button>
+            <button type="submit" class="github-button-primary h-8 flex items-center justify-center">Upload material</button>
           </div>
 
         </form>

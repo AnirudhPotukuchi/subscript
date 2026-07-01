@@ -5,7 +5,7 @@
     "email": "admin@college.edu",
     "password": "2e1bdf3032a87f38d8b1c27313b6dc17:84811315500195a13c8cbcb8c59c9942c648ee26c280f0876f3b0538f9d5a56bf05a2ef8786281f05f42675dd91c91a8eb850c9b6c1b7ccdbfa0370f0432eeb7",
     "fullName": "Jane Doe",
-    "rollNumber": "CS2026001", 
+    "rollNumber": "CS2026001",
     "branch": "Computer Science",
     "year": 3,
     "section": "A",
@@ -40,11 +40,13 @@
     "followingCount": 0,
     "followers": [],
     "following": [],
-    "bookmarks": [],
+    "bookmarks": [
+      "150sqn23ztj"
+    ],
     "likedPosts": [],
     "role": "admin",
     "isVerified": true,
     "createdAt": "2026-06-29T18:10:50.339Z",
-    "updatedAt": "2026-06-29T18:10:50.340Z"
+    "updatedAt": "2026-07-01T16:52:18.750Z"
   }
 ]
